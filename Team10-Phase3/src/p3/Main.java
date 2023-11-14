@@ -6,6 +6,9 @@ public class Main {
 		DatabaseManager dbManager = new DatabaseManager(configLoader);
 		QueryExecutor queryExecutor = new QueryExecutor(dbManager);
 		InputHandler inputHandler = new InputHandler(queryExecutor);
+
 		inputHandler.start();
+
+		return;
 	}
 }

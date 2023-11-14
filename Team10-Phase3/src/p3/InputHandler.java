@@ -17,6 +17,7 @@ public class InputHandler {
 			String input = scanner.nextLine();
 
 			if ("exit".equalsIgnoreCase(input)) {
+				System.out.println("[System]: Program Terminated.");
 				break;
 			}
 

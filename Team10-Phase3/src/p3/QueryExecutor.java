@@ -23,6 +23,7 @@ public class QueryExecutor {
 				int affectedRows = stmt.executeUpdate(sql);
 				System.out.println(affectedRows + " row(s) affected.");
 			}
+			dbManager.closeConnection(conn);
 		}
 	}
 

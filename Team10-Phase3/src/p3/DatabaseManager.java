@@ -9,9 +9,7 @@ public class DatabaseManager {
 
 	public DatabaseManager(ConfigLoader configLoader) {
 		try {
-			// Load a JDBC driver for Oracle DBMS
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			// Get a Connection object
 			System.out.println("[System]: OracleDriver success.");
 		} catch (ClassNotFoundException e) {
 			System.err.println("[System]: error = " + e.getMessage());
@@ -23,7 +21,6 @@ public class DatabaseManager {
 	}
 
 	public Connection getConnection() throws SQLException {
-		// Make a connection
 		try {
 			Connection conn = DriverManager.getConnection(url, user, password);
 			System.out.println("[System]: Database Connected.");
