@@ -4,8 +4,8 @@ import java.sql.Statement;
 
 public class Console {
 	public static final String URL = "jdbc:oracle:thin:@localhost:1521:orcl";
-    public static final String USER_ID = "gym";
-    public static final String USER_PASSWD = "comp322";
+    public static final String USER_ID = "GYM";
+    public static final String USER_PASSWD = "COMP322";
 
     private static Connection connection;
     private static Statement statement;
