@@ -30,10 +30,18 @@ public class QueryCreater {
 			return selectTen();
 		case "10-1":
 			return selectTen2();
-		case "11":
+    case "11":
 			return selectGymsWithUser();
 		case "12":
 			return selectTrainerWithTwoSpecialization();
+		case "13":
+			return select13();
+		case "14":
+			return select14();
+		case "15":
+			return select15();
+		case "16":
+			return select16();
 		}
 		return null;
 	}
@@ -109,7 +117,6 @@ public class QueryCreater {
 		sb.append(" GROUP BY G.GYM_ID, G.NAME, G.LOCATION");
 		sb.append(" ORDER BY AVG_RATE " + sortOrder);
 		sb.append(" FETCH FIRST 10 ROWS ONLY");
-
 		String sql = sb.toString();
 		return sql;
 
@@ -236,6 +243,116 @@ public class QueryCreater {
 		sb.append("WHERE Gym_id =" + gymId);
 
 		return sb.toString();
+	}
+  
+	//------------------------------------------------//
+	private String select13() throws IOException {
+		StringBuffer sb = new StringBuffer();
+
+		System.out.println("사용자 ID를 입력하세요:");
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String userId = br.readLine();
+
+		System.out.println("사용자 이름을 입력하세요:");
+		String name = br.readLine();
+
+		System.out.println("전화번호를 입력하세요:");
+		String phoneNumber = br.readLine();
+
+		sb.append("UPDATE USERS");
+		sb.append(" SET NAME='" + name + "', PHONE_NUMBER='" + phoneNumber + "'");
+		sb.append(" WHERE USER_ID=" + userId);
+
+		String sql = sb.toString();
+		return sql;
+	}
+	private String select14() throws IOException {
+		StringBuffer sb = new StringBuffer();
+
+		System.out.println("사용자 ID를 입력하세요:");
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String userId = br.readLine();
+
+		System.out.println("트레이너 ID를 입력하세요:");
+		String trainerId = br.readLine();
+
+		sb.append("UPDATE USERS");
+		sb.append(" SET TRAINER_ID=" + trainerId);
+		sb.append(" WHERE USER_ID=" + userId);
+
+		String sql = sb.toString();
+		return sql;
+	}
+	//--------------------------15-----------------------------------
+	private String updateUsersQuery(String userId, String machineId) {
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("UPDATE USERS");
+	    sb.append(" SET RESERVE_MACHINE_ID=" + machineId);
+	    sb.append(" WHERE USER_ID=" + userId);
+	    return sb.toString();
+	}
+
+	private String updateMachineQuery(String machineId) {
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("UPDATE MACHINE");
+	    sb.append(" SET STATE='non_reservable'");
+	    sb.append(" WHERE MACHINE_ID=" + machineId);
+	    return sb.toString();
+	}
+
+	private String select15() throws IOException {
+	    System.out.println("사용자 ID를 입력하세요:");
+	    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	    String userId = br.readLine();
+
+	    System.out.println("예약할 Machine ID를 입력하세요:");
+	    String machineId = br.readLine();
+
+	    // 첫 번째 쿼리: 사용자의 reserve_machine_id 업데이트
+	    String updateUsersSql = updateUsersQuery(userId, machineId);
+
+	    // 두 번째 쿼리: 기계의 state 업데이트
+	    String updateMachineSql = updateMachineQuery(machineId);
+
+	    // 이제 두 개의 SQL 문을 각각 실행하거나 필요에 따라 조합하여 사용할 수 있음
+
+	    return updateUsersSql + "\n" + updateMachineSql;
+	}
+
+	//---------------------------16---------------------------------
+	private String updateUsingMachineIdQuery(String userId, String machineId) {
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("UPDATE USERS");
+	    sb.append(" SET USING_MACHINE_ID=" + machineId);
+	    sb.append(" WHERE USER_ID=" + userId);
+	    return sb.toString();
+	}
+
+	private String updateMachineStateQuery(String machineId, String newState) {
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("UPDATE MACHINE");
+	    sb.append(" SET STATE='" + newState + "'");
+	    sb.append(" WHERE MACHINE_ID=" + machineId);
+	    return sb.toString();
+	}
+
+	private String select16() throws IOException {
+	    System.out.println("사용자 ID를 입력하세요:");
+	    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	    String userId = br.readLine();
+
+	    System.out.println("사용할 Machine ID를 입력하세요:");
+	    String machineId = br.readLine();
+
+	    // 첫 번째 쿼리: 사용자의 using_machine_id 업데이트
+	    String updateUsingMachineIdSql = updateUsingMachineIdQuery(userId, machineId);
+
+	    // 두 번째 쿼리: 기계의 state 업데이트
+	    String updateMachineStateSql = updateMachineStateQuery(machineId, "reservable");
+
+	    // 이제 두 개의 SQL 문을 각각 실행하거나 필요에 따라 조합하여 사용할 수 있음
+
+	    return updateUsingMachineIdSql + "\n" + updateMachineStateSql;
 	}
 
 	private String selectGymsWithUser() throws IOException {

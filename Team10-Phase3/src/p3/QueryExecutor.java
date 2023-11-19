@@ -28,6 +28,7 @@ public class QueryExecutor {
 		}
 	}
 
+
 	private void printResultSet(ResultSet rs) throws SQLException {
 		System.out.println("결과는 아래와 같습니다.");
 
