@@ -86,7 +86,7 @@ public class QueryCreater {
 	private String selectMachineWithGym() throws IOException {
 		StringBuffer sb = new StringBuffer();
 
-		System.out.println("체육관 이름을 입력하세요:");
+		System.out.println("체육관 이름을 입력하세요: ");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		String name = br.readLine();
@@ -99,7 +99,7 @@ public class QueryCreater {
 	private String selectEight() throws IOException {
 		StringBuffer sb = new StringBuffer();
 
-		System.out.println("정렬 방법을 입력하세요: 'DESC' 또는 'ASC'");
+		System.out.println("정렬 방법을 입력하세요: 'DESC(평점 높은 순)' 또는 'ASC(평점 낮은 순)'");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String sortOrder = br.readLine();
 
@@ -118,14 +118,14 @@ public class QueryCreater {
 	private String selectNine() throws IOException {
 		StringBuffer sb = new StringBuffer();
 
-		System.out.print("특정 성별을 입력하세요: ex) M or F");
+		System.out.println("특정 성별을 입력하세요: ex) M or F");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String sex = br.readLine();
 
-		System.out.println("특정 나잇대(시작 YEAR)을 입력하세요: ex) 2004");
+		System.out.println("특정 나잇대(생일 시작 YEAR)을 입력하세요: ex) 2004");
 		String startYear = br.readLine();
 
-		System.out.println("특정 나잇대(마지막 YEAR)을 입력하세요: ex) 2007");
+		System.out.println("특정 나잇대(생일 마지막 YEAR)을 입력하세요: ex) 2007");
 		String endYear = br.readLine();
 
 		sb.append("SELECT COUNT (*) AS USERS_NUM, G.Name AS GYM_NAME, G.Gym_id, U.Sex");
@@ -143,7 +143,7 @@ public class QueryCreater {
 	private String selectTen() throws IOException {
 		StringBuffer sb = new StringBuffer();
 
-		System.out.println("특정 몸무게를 입력하세요:");
+		System.out.println("특정 몸무게를 입력하세요: ");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String weight = br.readLine();
 
@@ -163,7 +163,7 @@ public class QueryCreater {
 	private String selectTen2() throws IOException {
 		StringBuffer sb = new StringBuffer();
 
-		System.out.println("특정 몸무게를 입력하세요:");
+		System.out.println("특정 몸무게를 입력하세요: ");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String weight = br.readLine();
 
