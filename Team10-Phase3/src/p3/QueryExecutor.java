@@ -13,39 +13,19 @@ public class QueryExecutor {
 		this.dbManager = dbManager;
 	}
 
-//	public void execute(String sql) throws SQLException {
-//		try (Connection conn = dbManager.getConnection(); Statement stmt = conn.createStatement()) {
-//
-//			if (sql.trim().toLowerCase().startsWith("select")) {
-//				ResultSet rs = stmt.executeQuery(sql);
-//				// 결과 처리 (예: 출력)
-//				printResultSet(rs);
-//			} else {
-//				int affectedRows = stmt.executeUpdate(sql);
-//				System.out.println(affectedRows + " row(s) affected.");
-//			}
-//			dbManager.closeConnection(conn);
-//		}
-//	}
-	
 	public void execute(String sql) throws SQLException {
-	    try (Connection conn = dbManager.getConnection(); Statement stmt = conn.createStatement()) {
-	        String[] queries = sql.split(";");
-	        for (String query : queries) {
-	        	System.out.println(query);
-//	            if (!query.trim().isEmpty()) { // 빈 문자열이 아닌 경우에만 실행
-//	                if (query.trim().toLowerCase().startsWith("select")) {
-//	                    ResultSet rs = stmt.executeQuery(query);
-//	                    // 결과 처리 (예: 출력)
-//	                    printResultSet(rs);
-//	                } else {
-//	                    int affectedRows = stmt.executeUpdate(query);
-//	                    System.out.println(affectedRows + " row(s) affected.");
-//	                }
-//	            }
-	        }
-	        dbManager.closeConnection(conn);
-	    }
+		try (Connection conn = dbManager.getConnection(); Statement stmt = conn.createStatement()) {
+
+			if (sql.trim().toLowerCase().startsWith("select")) {
+				ResultSet rs = stmt.executeQuery(sql);
+				// 결과 처리 (예: 출력)
+				printResultSet(rs);
+			} else {
+				int affectedRows = stmt.executeUpdate(sql);
+				System.out.println(affectedRows + " row(s) affected.");
+			}
+			dbManager.closeConnection(conn);
+		}
 	}
 
 

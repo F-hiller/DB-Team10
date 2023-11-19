@@ -320,7 +320,7 @@ public class QueryCreater {
 	    StringBuffer sb = new StringBuffer();
 	    sb.append("UPDATE USERS");
 	    sb.append(" SET USING_MACHINE_ID=" + machineId);
-	    sb.append(" WHERE USER_ID=" + userId +";");
+	    sb.append(" WHERE USER_ID=" + userId);
 	    return sb.toString();
 	}
 
@@ -328,7 +328,7 @@ public class QueryCreater {
 	    StringBuffer sb = new StringBuffer();
 	    sb.append("UPDATE MACHINE");
 	    sb.append(" SET STATE='" + newState + "'");
-	    sb.append(" WHERE MACHINE_ID=" + machineId + ";");
+	    sb.append(" WHERE MACHINE_ID=" + machineId);
 	    return sb.toString();
 	}
 
