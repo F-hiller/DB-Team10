@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 
 public class QueryExecutor {
 	private DatabaseManager dbManager;
@@ -29,9 +30,24 @@ public class QueryExecutor {
 
 	private void printResultSet(ResultSet rs) throws SQLException {
 		System.out.println("결과는 아래와 같습니다.");
-		while (rs.next()) {
-			// 각 컬럼의 데이터를 출력 (예제를 위한 단순화)
-			System.out.println(rs.getString(1));
-		}
+		
+		ResultSetMetaData metaData = rs.getMetaData();
+	    int columnCount = metaData.getColumnCount();
+	    for (int i = 1; i <= columnCount; i++) {
+	    	System.out.print(String.format("%-50s", metaData.getColumnName(i)));
+	    }
+	    System.out.println();
+	    for (int i = 1; i <= columnCount; i++) {
+		    System.out.print("--------------------------------------------------");
+	    }
+	    System.out.println();
+	    while (rs.next()) {
+	        for (int i = 1; i <= columnCount; i++) {
+	            // 각 컬럼의 데이터를 출력 (예제를 위한 단순화)
+	            System.out.print(String.format("%-50s", rs.getString(i)));   
+	        }
+            System.out.println();
+	    }
+	    System.out.println(); 
 	}
 }
