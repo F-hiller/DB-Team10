@@ -30,6 +30,10 @@ public class QueryCreater {
 			return selectTen();
 		case "10-1":
 			return selectTen2();
+    case "11":
+			return selectGymsWithUser();
+		case "12":
+			return selectTrainerWithTwoSpecialization();
 		case "13":
 			return select13();
 		case "14":
@@ -117,7 +121,6 @@ public class QueryCreater {
 		return sql;
 
 	}
-
 
 	private String selectNine() throws IOException {
 		StringBuffer sb = new StringBuffer();
@@ -241,6 +244,7 @@ public class QueryCreater {
 
 		return sb.toString();
 	}
+  
 	//------------------------------------------------//
 	private String select13() throws IOException {
 		StringBuffer sb = new StringBuffer();
@@ -350,5 +354,32 @@ public class QueryCreater {
 
 	    return updateUsingMachineIdSql + "\n" + updateMachineStateSql;
 	}
-	//------------------------------------------------------------------
+
+	private String selectGymsWithUser() throws IOException {
+		StringBuffer sb = new StringBuffer();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		System.out.print("User id를 입력해주세요 (1~100): ");
+		String userId = br.readLine();
+
+		sb.append(
+				"SELECT G.NAME, G.LOCATION FROM GYM     G, USERS   U, ENROLLS E WHERE G.GYM_ID = E.GYM_ID AND E.USER_ID = U.USER_ID AND U.USER_ID = "
+						+ userId);
+
+		return sb.toString();
+	}
+
+	private String selectTrainerWithTwoSpecialization() throws IOException {
+		StringBuffer sb = new StringBuffer();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		System.out.println("첫번째 관심 Specialization을 입력해주세요: ex)Bulk Up, Diet");
+		String spec1 = br.readLine();
+		System.out.println("두번째 관심 Specialization을 입력해주세요: ex)Bulk Up, Diet");
+		String spec2 = br.readLine();
+
+		sb.append("SELECT Name, Contact FROM TRAINER WHERE Specialization IN ( '" + spec1 + "', '" + spec2 + "' )");
+
+		return sb.toString();
+	}
 }
