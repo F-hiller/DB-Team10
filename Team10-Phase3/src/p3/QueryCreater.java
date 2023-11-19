@@ -30,6 +30,14 @@ public class QueryCreater {
 			return selectTen();
 		case "10-1":
 			return selectTen2();
+		case "13":
+			return select13();
+		case "14":
+			return select14();
+		case "15":
+			return select15();
+		case "16":
+			return select16();
 		}
 		return null;
 	}
@@ -105,11 +113,11 @@ public class QueryCreater {
 		sb.append(" GROUP BY G.GYM_ID, G.NAME, G.LOCATION");
 		sb.append(" ORDER BY AVG_RATE " + sortOrder);
 		sb.append(" FETCH FIRST 10 ROWS ONLY");
-        
-        String sql = sb.toString();
-        return sql;
 
-    }
+		String sql = sb.toString();
+		return sql;
+
+	}
 
 	private String selectNine() throws IOException {
 		StringBuffer sb = new StringBuffer();
@@ -175,7 +183,6 @@ public class QueryCreater {
 		return sql;
 	}
 
-
 	// 수정됨 -> 특정 나이 추가
 	// System.out.print("5. 성별을 특정한 GYM의 리뷰 조회\n ");
 	private String selectReviewWithGenderAndAge() throws IOException {
@@ -220,18 +227,128 @@ public class QueryCreater {
 	// 수정됨 -> GYM에 등록된 인원의 이름, 생일 조회
 	// System.out.print("7. 특정 GYM의 ID 입력시, 해당 GYM에 등록된 인원 수 조회\n ");
 	private String selectGymWithGymId() throws IOException {
-    	StringBuffer sb = new StringBuffer();
-    	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        
-    	System.out.print("Gym id를 입력해주세요 (1~100): ");
-    	String gymId = br.readLine();
-    	
-    	sb.append("SELECT Name as USER_NAME,TO_CHAR(Birth_date,'YYYY-MM-DD') as USER_BIRTHDAY ");
-    	sb.append("FROM ( ");
-    	sb.append("    SELECT U.Name, U.Birth_date, E.Gym_id ");
-    	sb.append("    FROM USERS U JOIN ENROLLS E ON U.User_id = E.User_id ) ");
-    	sb.append("WHERE Gym_id =" +gymId);
-    	
-    	return sb.toString();
-    }
+		StringBuffer sb = new StringBuffer();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		System.out.print("Gym id를 입력해주세요 (1~100): ");
+		String gymId = br.readLine();
+
+		sb.append("SELECT Name as USER_NAME,TO_CHAR(Birth_date,'YYYY-MM-DD') as USER_BIRTHDAY ");
+		sb.append("FROM ( ");
+		sb.append("    SELECT U.Name, U.Birth_date, E.Gym_id ");
+		sb.append("    FROM USERS U JOIN ENROLLS E ON U.User_id = E.User_id ) ");
+		sb.append("WHERE Gym_id =" + gymId);
+
+		return sb.toString();
+	}
+	//------------------------------------------------//
+	private String select13() throws IOException {
+		StringBuffer sb = new StringBuffer();
+
+		System.out.println("사용자 ID를 입력하세요:");
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String userId = br.readLine();
+
+		System.out.println("사용자 이름을 입력하세요:");
+		String name = br.readLine();
+
+		System.out.println("전화번호를 입력하세요:");
+		String phoneNumber = br.readLine();
+
+		sb.append("UPDATE USERS");
+		sb.append(" SET NAME='" + name + "', PHONE_NUMBER='" + phoneNumber + "'");
+		sb.append(" WHERE USER_ID=" + userId);
+
+		String sql = sb.toString();
+		return sql;
+	}
+	private String select14() throws IOException {
+		StringBuffer sb = new StringBuffer();
+
+		System.out.println("사용자 ID를 입력하세요:");
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String userId = br.readLine();
+
+		System.out.println("트레이너 ID를 입력하세요:");
+		String trainerId = br.readLine();
+
+		sb.append("UPDATE USERS");
+		sb.append(" SET TRAINER_ID=" + trainerId);
+		sb.append(" WHERE USER_ID=" + userId);
+
+		String sql = sb.toString();
+		return sql;
+	}
+	//--------------------------15-----------------------------------
+	private String updateUsersQuery(String userId, String machineId) {
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("UPDATE USERS");
+	    sb.append(" SET RESERVE_MACHINE_ID=" + machineId);
+	    sb.append(" WHERE USER_ID=" + userId);
+	    return sb.toString();
+	}
+
+	private String updateMachineQuery(String machineId) {
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("UPDATE MACHINE");
+	    sb.append(" SET STATE='non_reservable'");
+	    sb.append(" WHERE MACHINE_ID=" + machineId);
+	    return sb.toString();
+	}
+
+	private String select15() throws IOException {
+	    System.out.println("사용자 ID를 입력하세요:");
+	    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	    String userId = br.readLine();
+
+	    System.out.println("예약할 Machine ID를 입력하세요:");
+	    String machineId = br.readLine();
+
+	    // 첫 번째 쿼리: 사용자의 reserve_machine_id 업데이트
+	    String updateUsersSql = updateUsersQuery(userId, machineId);
+
+	    // 두 번째 쿼리: 기계의 state 업데이트
+	    String updateMachineSql = updateMachineQuery(machineId);
+
+	    // 이제 두 개의 SQL 문을 각각 실행하거나 필요에 따라 조합하여 사용할 수 있음
+
+	    return updateUsersSql + "\n" + updateMachineSql;
+	}
+
+	//---------------------------16---------------------------------
+	private String updateUsingMachineIdQuery(String userId, String machineId) {
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("UPDATE USERS");
+	    sb.append(" SET USING_MACHINE_ID=" + machineId);
+	    sb.append(" WHERE USER_ID=" + userId +";");
+	    return sb.toString();
+	}
+
+	private String updateMachineStateQuery(String machineId, String newState) {
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("UPDATE MACHINE");
+	    sb.append(" SET STATE='" + newState + "'");
+	    sb.append(" WHERE MACHINE_ID=" + machineId + ";");
+	    return sb.toString();
+	}
+
+	private String select16() throws IOException {
+	    System.out.println("사용자 ID를 입력하세요:");
+	    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	    String userId = br.readLine();
+
+	    System.out.println("사용할 Machine ID를 입력하세요:");
+	    String machineId = br.readLine();
+
+	    // 첫 번째 쿼리: 사용자의 using_machine_id 업데이트
+	    String updateUsingMachineIdSql = updateUsingMachineIdQuery(userId, machineId);
+
+	    // 두 번째 쿼리: 기계의 state 업데이트
+	    String updateMachineStateSql = updateMachineStateQuery(machineId, "reservable");
+
+	    // 이제 두 개의 SQL 문을 각각 실행하거나 필요에 따라 조합하여 사용할 수 있음
+
+	    return updateUsingMachineIdSql + "\n" + updateMachineStateSql;
+	}
+	//------------------------------------------------------------------
 }
