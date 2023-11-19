@@ -24,8 +24,8 @@ public class InputHandler {
 			System.out.print("6. 특정 전문분야의 트레이너를 보유한 GYM 조회\n ");
 			System.out.print("7. 특정 GYM의 ID 입력시, 해당 GYM에 등록된 인원 수 조회\n ");
 			System.out.print("8. GYM의 리뷰 평점순으로 정렬하여 조회\n ");
-			System.out.print("9. 특정 ID를 가진 USER 조회\n ");
-			System.out.print("10. 특정 ID를 가진 USER 조회\n ");
+			System.out.print("9. 특정 성별,나잇대에 해당하는 GYM별 인원 수\n ");
+			System.out.print("10. 특정 몸무게 이상인 USER 이름 및 등록된 GYM 조회\n ");
 			//----------------DELETE, UPDATE 사용----------------//
 			System.out.print("11. 접속할 User 선택\n ");
 			System.out.print("12. 원하는 작업을 선택\n ");
