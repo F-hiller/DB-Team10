@@ -113,11 +113,11 @@ public class QueryCreater {
 		sb.append(" GROUP BY G.GYM_ID, G.NAME, G.LOCATION");
 		sb.append(" ORDER BY AVG_RATE " + sortOrder);
 		sb.append(" FETCH FIRST 10 ROWS ONLY");
-
 		String sql = sb.toString();
 		return sql;
 
 	}
+
 
 	private String selectNine() throws IOException {
 		StringBuffer sb = new StringBuffer();
