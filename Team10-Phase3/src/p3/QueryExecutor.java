@@ -30,7 +30,7 @@ public class QueryExecutor {
 
 	private void printResultSet(ResultSet rs) throws SQLException {
 		System.out.println("결과는 아래와 같습니다.");
-		
+
 		ResultSetMetaData metaData = rs.getMetaData();
 	    int columnCount = metaData.getColumnCount();
 	    for (int i = 1; i <= columnCount; i++) {
