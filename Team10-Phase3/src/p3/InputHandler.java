@@ -2,6 +2,7 @@ package p3;
 
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class InputHandler {
 	private Scanner scanner;
@@ -49,7 +50,13 @@ public class InputHandler {
 
 			// SQL 명령 실행
 			try {
-				queryExecutor.execute(sql);
+				if (sql.contains("\n")) {
+					StringTokenizer st = new StringTokenizer(sql, "\n");
+					String sql1 =st.nextToken();
+					queryExecutor.execute(sql1);
+					queryExecutor.execute(st.nextToken());
+				}
+				else queryExecutor.execute(sql);
 			} catch (Exception e) {
 				System.out.println("[System]: Error executing command: " + e.getMessage());
 				e.printStackTrace();
