@@ -30,6 +30,10 @@ public class QueryCreater {
 			return selectTen();
 		case "10-1":
 			return selectTen2();
+		case "19":
+			return selectGymsWithUser();
+		case "20":
+			return selectTrainerWithTwoSpecialization();
 		}
 		return null;
 	}
@@ -105,11 +109,11 @@ public class QueryCreater {
 		sb.append(" GROUP BY G.GYM_ID, G.NAME, G.LOCATION");
 		sb.append(" ORDER BY AVG_RATE " + sortOrder);
 		sb.append(" FETCH FIRST 10 ROWS ONLY");
-        
-        String sql = sb.toString();
-        return sql;
 
-    }
+		String sql = sb.toString();
+		return sql;
+
+	}
 
 	private String selectNine() throws IOException {
 		StringBuffer sb = new StringBuffer();
@@ -175,7 +179,6 @@ public class QueryCreater {
 		return sql;
 	}
 
-
 	// 수정됨 -> 특정 나이 추가
 	// System.out.print("5. 성별을 특정한 GYM의 리뷰 조회\n ");
 	private String selectReviewWithGenderAndAge() throws IOException {
@@ -220,18 +223,46 @@ public class QueryCreater {
 	// 수정됨 -> GYM에 등록된 인원의 이름, 생일 조회
 	// System.out.print("7. 특정 GYM의 ID 입력시, 해당 GYM에 등록된 인원 수 조회\n ");
 	private String selectGymWithGymId() throws IOException {
-    	StringBuffer sb = new StringBuffer();
-    	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        
-    	System.out.print("Gym id를 입력해주세요 (1~100): ");
-    	String gymId = br.readLine();
-    	
-    	sb.append("SELECT Name as USER_NAME,TO_CHAR(Birth_date,'YYYY-MM-DD') as USER_BIRTHDAY ");
-    	sb.append("FROM ( ");
-    	sb.append("    SELECT U.Name, U.Birth_date, E.Gym_id ");
-    	sb.append("    FROM USERS U JOIN ENROLLS E ON U.User_id = E.User_id ) ");
-    	sb.append("WHERE Gym_id =" +gymId);
-    	
-    	return sb.toString();
-    }
+		StringBuffer sb = new StringBuffer();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		System.out.print("Gym id를 입력해주세요 (1~100): ");
+		String gymId = br.readLine();
+
+		sb.append("SELECT Name as USER_NAME,TO_CHAR(Birth_date,'YYYY-MM-DD') as USER_BIRTHDAY ");
+		sb.append("FROM ( ");
+		sb.append("    SELECT U.Name, U.Birth_date, E.Gym_id ");
+		sb.append("    FROM USERS U JOIN ENROLLS E ON U.User_id = E.User_id ) ");
+		sb.append("WHERE Gym_id =" + gymId);
+
+		return sb.toString();
+	}
+
+	private String selectGymsWithUser() throws IOException {
+		StringBuffer sb = new StringBuffer();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		System.out.print("User id를 입력해주세요 (1~100): ");
+		String userId = br.readLine();
+
+		sb.append(
+				"SELECT G.NAME, G.LOCATION FROM GYM     G, USERS   U, ENROLLS E WHERE G.GYM_ID = E.GYM_ID AND E.USER_ID = U.USER_ID AND U.USER_ID = "
+						+ userId);
+
+		return sb.toString();
+	}
+
+	private String selectTrainerWithTwoSpecialization() throws IOException {
+		StringBuffer sb = new StringBuffer();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		System.out.println("첫번째 관심 Specialization을 입력해주세요: ex)Bulk Up, Diet");
+		String spec1 = br.readLine();
+		System.out.println("두번째 관심 Specialization을 입력해주세요: ex)Bulk Up, Diet");
+		String spec2 = br.readLine();
+
+		sb.append("SELECT Name, Contact FROM TRAINER WHERE Specialization IN ( '" + spec1 + "', '" + spec2 + "' )");
+
+		return sb.toString();
+	}
 }
