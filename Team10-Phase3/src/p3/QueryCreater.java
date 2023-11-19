@@ -30,9 +30,9 @@ public class QueryCreater {
 			return selectTen();
 		case "10-1":
 			return selectTen2();
-		case "19":
+		case "11":
 			return selectGymsWithUser();
-		case "20":
+		case "12":
 			return selectTrainerWithTwoSpecialization();
 		}
 		return null;
