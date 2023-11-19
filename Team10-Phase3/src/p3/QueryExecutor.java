@@ -28,6 +28,7 @@ public class QueryExecutor {
 	}
 
 	private void printResultSet(ResultSet rs) throws SQLException {
+		System.out.println("결과는 아래와 같습니다.");
 		while (rs.next()) {
 			// 각 컬럼의 데이터를 출력 (예제를 위한 단순화)
 			System.out.println(rs.getString(1));
