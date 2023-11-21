@@ -30,7 +30,7 @@ public class QueryCreater {
 			return selectTen();
 		case "10-1":
 			return selectTen2();
-    case "11":
+		case "11":
 			return selectGymsWithUser();
 		case "12":
 			return selectTrainerWithTwoSpecialization();
@@ -355,6 +355,7 @@ public class QueryCreater {
 	    return updateUsingMachineIdSql + "\n" + updateMachineStateSql;
 	}
 
+	//11번
 	private String selectGymsWithUser() throws IOException {
 		StringBuffer sb = new StringBuffer();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -369,6 +370,7 @@ public class QueryCreater {
 		return sb.toString();
 	}
 
+	//12번
 	private String selectTrainerWithTwoSpecialization() throws IOException {
 		StringBuffer sb = new StringBuffer();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
