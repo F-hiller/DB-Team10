@@ -49,18 +49,19 @@ public class InputHandler {
 			
 
 			// SQL 명령 실행
-			try {
-				if (sql.contains("\n")) {
-					StringTokenizer st = new StringTokenizer(sql, "\n");
-					String sql1 =st.nextToken();
-					queryExecutor.execute(sql1);
-					queryExecutor.execute(st.nextToken());
-				}
-				else queryExecutor.execute(sql);
-			} catch (Exception e) {
-				System.out.println("[System]: Error executing command: " + e.getMessage());
-				e.printStackTrace();
-			}
+	         try {
+	            if (sql.contains("\n")) {
+	               StringTokenizer st = new StringTokenizer(sql, "\n");
+	               String sql1 =st.nextToken();
+	               queryExecutor.execute(sql1);
+	               queryExecutor.execute(st.nextToken());
+	            }
+	            else queryExecutor.execute(sql);
+	         } catch (Exception e) {
+	            System.out.println("[System]: Error executing command: " + e.getMessage());
+	            e.printStackTrace();
+	         }
+
 		}
 	}
 }
