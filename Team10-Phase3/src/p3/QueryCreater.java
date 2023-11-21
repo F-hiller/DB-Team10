@@ -56,6 +56,7 @@ public class QueryCreater {
 		return null;
 	}
 
+	//1. 특정 Capacity 이하의 수용량을 가진 Gym 찾기
 	private String selectGymWithCapacity() throws IOException {
 		StringBuffer sb = new StringBuffer();
 
@@ -71,10 +72,11 @@ public class QueryCreater {
 		return sql;
 	}
 
+	//2. 특정 ID를 가진 USER 조회
 	private String selectUserWithId() throws IOException {
 		StringBuffer sb = new StringBuffer();
 
-		System.out.println("User의 Id를 입력하세요:");
+		System.out.print("User의 Id를 입력하세요:");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		String userId = br.readLine();
@@ -83,16 +85,17 @@ public class QueryCreater {
 		return sql;
 	}
 
+	//3. 전문분야와 경력을 설정하여 트레이너 조회 
 	private String selectTrainerWithSpecAndYear() throws IOException {
 		StringBuffer sb = new StringBuffer();
 
-		System.out.println("Specialization을 입력하세요: ex) Bulk up, Conditioning");
+		System.out.print("Specialization을 입력하세요: ex) Bulk up, Conditioning");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String specialization = br.readLine();
 
-		System.out.println("최소 경력을 입력하세요:");
+		System.out.print("최소 경력을 입력하세요:");
 		String minYear = br.readLine();
-		System.out.println("최대 경력을 입력하세요:");
+		System.out.print("최대 경력을 입력하세요:");
 		String maxYear = br.readLine();
 
 		sb.append("SELECT * FROM TRAINER T WHERE T.Specialization = '" + specialization + "' AND T.Work_year BETWEEN "
@@ -101,10 +104,11 @@ public class QueryCreater {
 		return sql;
 	}
 
+	//4. 특정 GYM의 보유 장비 조회
 	private String selectMachineWithGym() throws IOException {
 		StringBuffer sb = new StringBuffer();
 
-		System.out.println("체육관 이름을 입력하세요: ");
+		System.out.print("체육관 이름을 입력하세요: ");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		String name = br.readLine();
@@ -117,7 +121,7 @@ public class QueryCreater {
 	private String selectEight() throws IOException {
 		StringBuffer sb = new StringBuffer();
 
-		System.out.println("정렬 방법을 입력하세요: 'DESC(평점 높은 순)' 또는 'ASC(평점 낮은 순)'");
+		System.out.print("정렬 방법을 입력하세요: 'DESC(평점 높은 순)' 또는 'ASC(평점 낮은 순)'");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String sortOrder = br.readLine();
 
@@ -135,14 +139,14 @@ public class QueryCreater {
 	private String selectNine() throws IOException {
 		StringBuffer sb = new StringBuffer();
 
-		System.out.println("특정 성별을 입력하세요: ex) M or F");
+		System.out.print("특정 성별을 입력하세요: ex) M or F");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String sex = br.readLine();
 
-		System.out.println("특정 나잇대(생일 시작 YEAR)을 입력하세요: ex) 2004");
+		System.out.print("특정 나잇대(생일 시작 YEAR)을 입력하세요: ex) 2004");
 		String startYear = br.readLine();
 
-		System.out.println("특정 나잇대(생일 마지막 YEAR)을 입력하세요: ex) 2007");
+		System.out.print("특정 나잇대(생일 마지막 YEAR)을 입력하세요: ex) 2007");
 		String endYear = br.readLine();
 
 		sb.append("SELECT COUNT (*) AS USERS_NUM, G.Name AS GYM_NAME, G.Gym_id, U.Sex");
@@ -160,7 +164,7 @@ public class QueryCreater {
 	private String selectTen() throws IOException {
 		StringBuffer sb = new StringBuffer();
 
-		System.out.println("특정 몸무게를 입력하세요: ");
+		System.out.print("특정 몸무게를 입력하세요: ");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String weight = br.readLine();
 
@@ -180,7 +184,7 @@ public class QueryCreater {
 	private String selectTen2() throws IOException {
 		StringBuffer sb = new StringBuffer();
 
-		System.out.println("특정 몸무게를 입력하세요: ");
+		System.out.print("특정 몸무게를 입력하세요: ");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String weight = br.readLine();
 
@@ -197,7 +201,7 @@ public class QueryCreater {
 	}
 
 	// 수정됨 -> 특정 나이 추가
-	// System.out.print("5. 성별을 특정한 GYM의 리뷰 조회\n ");
+	// System.out.print("5. 특정 나이 이상, 성별에 해당하는 유저의 GYM의 리뷰 수 조회\n ");
 	private String selectReviewWithGenderAndAge() throws IOException {
 		StringBuffer sb = new StringBuffer();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -218,12 +222,12 @@ public class QueryCreater {
 	}
 
 	// 수정됨 -> Gym Location 추가
-	// System.out.print("6. 특정 전문분야의 트레이너를 보유한 GYM 조회\n ");
+	// System.out.print("6. 특정 전문분야의 트레이너를 보유한 GYM 이름, 위치 조회\n ");
 	private String selectGymWithSpecializedTrainer() throws IOException {
 		StringBuffer sb = new StringBuffer();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-		System.out.println("Body Profile, Diet, Conditioning, Bulk Up, Body Building, Power Lifting");
+		System.out.print("Body Profile, Diet, Conditioning, Bulk Up, Body Building, Power Lifting");
 		System.out.print("Trainer의 전문분야를 입력하세요(위 예시 중 입력): ");
 		String specialization = br.readLine();
 		sb.append("SELECT G.Name as GYM_NAME, G.Location as GYM_LOCATION ");
@@ -258,14 +262,14 @@ public class QueryCreater {
 	private String select13() throws IOException {
 		StringBuffer sb = new StringBuffer();
 
-		System.out.println("사용자 ID를 입력하세요:");
+		System.out.print("USER ID를 입력하세요:");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String userId = br.readLine();
 
-		System.out.println("사용자 이름을 입력하세요:");
+		System.out.print("USER 이름을 입력하세요:");
 		String name = br.readLine();
 
-		System.out.println("전화번호를 입력하세요:");
+		System.out.print("전화번호를 입력하세요:");
 		String phoneNumber = br.readLine();
 
 		sb.append("UPDATE USERS");
@@ -275,15 +279,14 @@ public class QueryCreater {
 		String sql = sb.toString();
 		return sql;
 	}
-
 	private String select14() throws IOException {
 		StringBuffer sb = new StringBuffer();
 
-		System.out.println("사용자 ID를 입력하세요:");
+		System.out.print("USER ID를 입력하세요:");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String userId = br.readLine();
 
-		System.out.println("트레이너 ID를 입력하세요:");
+		System.out.print("트레이너 ID를 입력하세요:");
 		String trainerId = br.readLine();
 
 		sb.append("UPDATE USERS");
@@ -293,77 +296,76 @@ public class QueryCreater {
 		String sql = sb.toString();
 		return sql;
 	}
-
-	// --------------------------15-----------------------------------
+	//--------------------------15-----------------------------------
 	private String updateUsersQuery(String userId, String machineId) {
-		StringBuffer sb = new StringBuffer();
-		sb.append("UPDATE USERS");
-		sb.append(" SET RESERVE_MACHINE_ID=" + machineId);
-		sb.append(" WHERE USER_ID=" + userId);
-		return sb.toString();
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("UPDATE USERS");
+	    sb.append(" SET RESERVE_MACHINE_ID=" + machineId);
+	    sb.append(" WHERE USER_ID=" + userId);
+	    return sb.toString();
 	}
 
 	private String updateMachineQuery(String machineId) {
-		StringBuffer sb = new StringBuffer();
-		sb.append("UPDATE MACHINE");
-		sb.append(" SET STATE='non_reservable'");
-		sb.append(" WHERE MACHINE_ID=" + machineId);
-		return sb.toString();
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("UPDATE MACHINE");
+	    sb.append(" SET STATE='non_reservable'");
+	    sb.append(" WHERE MACHINE_ID=" + machineId);
+	    return sb.toString();
 	}
 
 	private String select15() throws IOException {
-		System.out.println("사용자 ID를 입력하세요:");
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String userId = br.readLine();
+	    System.out.print("USER ID를 입력하세요:");
+	    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	    String userId = br.readLine();
 
-		System.out.println("예약할 Machine ID를 입력하세요:");
-		String machineId = br.readLine();
+	    System.out.print("예약할 Machine ID를 입력하세요:");
+	    String machineId = br.readLine();
 
-		// 첫 번째 쿼리: 사용자의 reserve_machine_id 업데이트
-		String updateUsersSql = updateUsersQuery(userId, machineId);
+	    // 첫 번째 쿼리: 사용자의 reserve_machine_id 업데이트
+	    String updateUsersSql = updateUsersQuery(userId, machineId);
 
-		// 두 번째 쿼리: 기계의 state 업데이트
-		String updateMachineSql = updateMachineQuery(machineId);
+	    // 두 번째 쿼리: 기계의 state 업데이트
+	    String updateMachineSql = updateMachineQuery(machineId);
 
-		// 이제 두 개의 SQL 문을 각각 실행하거나 필요에 따라 조합하여 사용할 수 있음
+	    // 이제 두 개의 SQL 문을 각각 실행하거나 필요에 따라 조합하여 사용할 수 있음
 
-		return updateUsersSql + "\n" + updateMachineSql;
+	    return updateUsersSql + "\n" + updateMachineSql;
 	}
 
-	// ---------------------------16---------------------------------
+	//---------------------------16---------------------------------
 	private String updateUsingMachineIdQuery(String userId, String machineId) {
-		StringBuffer sb = new StringBuffer();
-		sb.append("UPDATE USERS");
-		sb.append(" SET USING_MACHINE_ID=" + machineId);
-		sb.append(" WHERE USER_ID=" + userId);
-		return sb.toString();
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("UPDATE USERS");
+	    sb.append(" SET USING_MACHINE_ID=" + machineId);
+	    sb.append(" WHERE USER_ID=" + userId);
+	    return sb.toString();
 	}
 
 	private String updateMachineStateQuery(String machineId, String newState) {
-		StringBuffer sb = new StringBuffer();
-		sb.append("UPDATE MACHINE");
-		sb.append(" SET STATE='" + newState + "'");
-		sb.append(" WHERE MACHINE_ID=" + machineId);
-		return sb.toString();
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("UPDATE MACHINE");
+	    sb.append(" SET STATE='" + newState + "'");
+	    sb.append(" WHERE MACHINE_ID=" + machineId);
+	    return sb.toString();
 	}
 
 	private String select16() throws IOException {
-		System.out.println("사용자 ID를 입력하세요:");
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String userId = br.readLine();
+	    System.out.print("USER ID를 입력하세요:");
+	    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	    String userId = br.readLine();
 
-		System.out.println("사용할 Machine ID를 입력하세요:");
-		String machineId = br.readLine();
+	    System.out.print("사용할 Machine ID를 입력하세요:");
+	    String machineId = br.readLine();
 
-		// 첫 번째 쿼리: 사용자의 using_machine_id 업데이트
-		String updateUsingMachineIdSql = updateUsingMachineIdQuery(userId, machineId);
+	    // 첫 번째 쿼리: 사용자의 using_machine_id 업데이트
+	    String updateUsingMachineIdSql = updateUsingMachineIdQuery(userId, machineId);
 
-		// 두 번째 쿼리: 기계의 state 업데이트
-		String updateMachineStateSql = updateMachineStateQuery(machineId, "reservable");
+	    // 두 번째 쿼리: 기계의 state 업데이트
+	    String updateMachineStateSql = updateMachineStateQuery(machineId, "reservable");
 
-		// 이제 두 개의 SQL 문을 각각 실행하거나 필요에 따라 조합하여 사용할 수 있음
+	    // 이제 두 개의 SQL 문을 각각 실행하거나 필요에 따라 조합하여 사용할 수 있음
 
-		return updateUsingMachineIdSql + "\n" + updateMachineStateSql;
+	    return updateUsingMachineIdSql + "\n" + updateMachineStateSql;
 	}
 
 	private String selectGymsWithUser() throws IOException {
@@ -380,110 +382,112 @@ public class QueryCreater {
 		return sb.toString();
 	}
 
+	//12 
 	private String selectTrainerWithTwoSpecialization() throws IOException {
 		StringBuffer sb = new StringBuffer();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-		System.out.println("첫번째 관심 Specialization을 입력해주세요: ex)Bulk Up, Diet");
+		System.out.print("첫번째 관심 Specialization을 입력해주세요: ex)Bulk Up, Diet");
 		String spec1 = br.readLine();
-		System.out.println("두번째 관심 Specialization을 입력해주세요: ex)Bulk Up, Diet");
+		System.out.print("두번째 관심 Specialization을 입력해주세요: ex)Bulk Up, Diet");
 		String spec2 = br.readLine();
 
 		sb.append("SELECT Name, Contact FROM TRAINER WHERE Specialization IN ( '" + spec1 + "', '" + spec2 + "' )");
 
 		return sb.toString();
 	}
+	
+	//--17. 대여물품 대여 (1번유저가 3번 헬스장의 Strap을 빌리는 경우)
+		private String rentItemByUser() throws IOException {
+			StringBuffer sb = new StringBuffer();
+	    	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	    	
+	    	System.out.print("User id를 입력해주세요 (1~1000): ");
+	    	String userId = br.readLine();
+	    	
+	    	System.out.print("Gym id를 입력해주세요 (1~100): ");
+	    	String gymId = br.readLine();
+	    	
+	    	System.out.print("rental Item을 입력해주세요(Fitness Band, Locker, Strap, Towel, Fitness wear): ");
+	    	String itemName = br.readLine();
+	    	
+	    	String valueFormat = "VALUES (%s, %s, '%s')";
+	    	
+	    	sb.append("INSERT INTO RENTS(User_id, Gym_id, Item_name) ");
+	    	sb.append(String.format(valueFormat, userId, gymId, itemName));
+	    	return sb.toString();
+		}
+		
+		
+		//--18. 헬스장 리뷰 등록
+		private String addReview() throws IOException {
+			StringBuffer sb = new StringBuffer();
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-	// --17. 대여물품 대여 (1번유저가 3번 헬스장의 Strap을 빌리는 경우)
-	private String rentItemByUser() throws IOException {
-		StringBuffer sb = new StringBuffer();
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			System.out.print("rating를 입력해주세요 (1~5): ");
+			String rating = br.readLine();
 
-		System.out.print("User id를 입력해주세요 (1~1000): ");
-		String userId = br.readLine();
+			System.out.print("comment를 입력해주세요: ");
+			String comment = br.readLine();
 
-		System.out.print("Gym id를 입력해주세요 (1~100): ");
-		String gymId = br.readLine();
+			System.out.print("User id를 입력해주세요: ");
+			String userId = br.readLine();
 
-		System.out.print("rental Item을 입력해주세요(Fitness Band, Locker, Strap, Towel, Fitness wear): ");
-		String itemName = br.readLine();
+			System.out.print("Gym id를 입력해주세요: ");
+			String gymId = br.readLine();
 
-		String valueFormat = "VALUES (%s, %s, '%s')";
+			LocalDate currentDate = LocalDate.now();
 
-		sb.append("INSERT INTO RENTS(User_id, Gym_id, Item_name) ");
-		sb.append(String.format(valueFormat, userId, gymId, itemName));
-		return sb.toString();
-	}
+			// 날짜를 원하는 형식으로 포맷팅
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			String formattedDate = currentDate.format(formatter);
 
-	// --18. 헬스장 리뷰 등록
-	private String addReview() throws IOException {
-		StringBuffer sb = new StringBuffer();
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			sb.append("INSERT INTO REVIEW(Review_id, Rating, User_Comment, Created_date, User_id, Gym_id) ");
+			sb.append(
+					"VALUES ((Select Review_id from (SELECT Review_id from review order by Review_id desc) where ROWNUM = 1)+1, "
+							+ rating + ", '" + comment + "', " + "TO_DATE('" + formattedDate + "', 'YYYY-MM-DD'), " + userId
+							+ ", " + gymId + ")");
+			return sb.toString();
+		}
+		
+		//--19. 헬스장 리뷰 수정
+		private String updateReview() throws IOException {
+			StringBuffer sb = new StringBuffer();
+	    	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	    	
+	    	System.out.print("수정할 Review id를 입력해주세요 (): ");
+	    	String reviewId = br.readLine();
+	    	
+	    	System.out.print("수정할 rating를 입력해주세요 (): ");
+	    	String rating = br.readLine();
+	    	
+	    	System.out.print("수정할 comment를 입력해주세요 (): ");
+	    	String comment = br.readLine();
+	    	
+	    	LocalDate currentDate = LocalDate.now();
 
-		System.out.print("rating를 입력해주세요 (1~5): ");
-		String rating = br.readLine();
-
-		System.out.print("comment를 입력해주세요: ");
-		String comment = br.readLine();
-
-		System.out.print("User id를 입력해주세요: ");
-		String userId = br.readLine();
-
-		System.out.print("Gym id를 입력해주세요: ");
-		String gymId = br.readLine();
-
-		LocalDate currentDate = LocalDate.now();
-
-		// 날짜를 원하는 형식으로 포맷팅
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		String formattedDate = currentDate.format(formatter);
-
-		sb.append("INSERT INTO REVIEW(Review_id, Rating, User_Comment, Created_date, User_id, Gym_id) ");
-		sb.append(
-				"VALUES ((Select Review_id from (SELECT Review_id from review order by Review_id desc) where ROWNUM = 1)+1, "
-						+ rating + ", '" + comment + "', " + "TO_DATE('" + formattedDate + "', 'YYYY-MM-DD'), " + userId
-						+ ", " + gymId + ")");
-
-		return sb.toString();
-	}
-
-	// --19. 헬스장 리뷰 수정
-	private String updateReview() throws IOException {
-		StringBuffer sb = new StringBuffer();
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-		System.out.print("수정할 Review id를 입력해주세요: ");
-		String reviewId = br.readLine();
-
-		System.out.print("수정할 rating를 입력해주세요: ");
-		String rating = br.readLine();
-
-		System.out.print("수정할 comment를 입력해주세요: ");
-		String comment = br.readLine();
-
-		LocalDate currentDate = LocalDate.now();
-
-		// 날짜를 원하는 형식으로 포맷팅
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		String formattedDate = currentDate.format(formatter);
-		sb.append("UPDATE REVIEW ");
-		sb.append("SET Rating = " + rating + ", ");
-		sb.append("    User_comment = '" + comment + "', ");
-		sb.append("    Created_date = TO_DATE('" + formattedDate + "', 'YYYY-MM-DD') ");
-		sb.append(" WHERE Review_id = " + reviewId);
-
-		return sb.toString();
-	}
-
-	// --20. 헬스장 리뷰 삭제
-	private String deleteReview() throws IOException {
-		StringBuffer sb = new StringBuffer();
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-		System.out.print("삭제할 Review id를 입력해주세요: ");
-		String reviewId = br.readLine();
-
-		sb.append("DELETE REVIEW WHERE REVIEW_ID = " + reviewId);
-		return sb.toString();
-	}
+	    	
+	        // 날짜를 원하는 형식으로 포맷팅
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	        String formattedDate = currentDate.format(formatter);
+	    	sb.append("UPDATE REVIEW ");
+	    	sb.append("SET Rating = "+rating+", ");
+	    	sb.append("    User_comment = '"+comment+"', ");
+	    	sb.append("    Created_date = TO_DATE('"+formattedDate+"', 'YYYY-MM-DD') ");
+	    	sb.append(" WHERE Review_id = "+reviewId);
+	    	
+	    	return sb.toString();
+		}
+		
+		//--20. 헬스장 리뷰 삭제
+		private String deleteReview() throws IOException {
+			StringBuffer sb = new StringBuffer();
+	    	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	    	
+	    	System.out.print("삭제할 Review id를 입력해주세요 (): ");
+	    	String reviewId = br.readLine();
+	    	
+	    	sb.append("DELETE REVIEW WHERE REVIEW_ID = "+reviewId);
+	    	return sb.toString();
+		}
 }
