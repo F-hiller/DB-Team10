@@ -21,7 +21,7 @@ public class InputHandler {
 			System.out.print("2. 특정 ID를 가진 USER 조회\n ");
 			System.out.print("3. 전문분야와 경력을 설정하여 트레이너 조회\n ");
 			System.out.print("4. 특정 GYM의 RENTAL_ITEM 조회\n ");
-			System.out.print("5. 성별을 특정한 GYM의 리뷰 조회\n ");
+			System.out.print("5. 특정 나이 이상, 성별에 해당하는 유저의 GYM의 리뷰 수 조회 \n ");
 			System.out.print("6. 특정 전문분야의 트레이너를 보유한 GYM 조회\n ");
 			System.out.print("7. 특정 GYM의 ID 입력시, 해당 GYM에 등록된 인원 이름 조회\n ");
 			System.out.print("8. GYM의 리뷰를 평점순으로 정렬하여 조회\n ");
