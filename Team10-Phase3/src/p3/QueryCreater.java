@@ -262,14 +262,14 @@ public class QueryCreater {
 	private String select13() throws IOException {
 		StringBuffer sb = new StringBuffer();
 
-		System.out.print("USER ID를 입력하세요:");
+		System.out.print("USER ID를 입력하세요 (1~1000):");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String userId = br.readLine();
 
-		System.out.print("USER 이름을 입력하세요:");
+		System.out.print("수정할 USER 이름을 입력하세요:");
 		String name = br.readLine();
 
-		System.out.print("전화번호를 입력하세요:");
+		System.out.print("수정할 전화번호를 입력하세요 (ex 010-1111-1111):");
 		String phoneNumber = br.readLine();
 
 		sb.append("UPDATE USERS");
@@ -282,11 +282,11 @@ public class QueryCreater {
 	private String select14() throws IOException {
 		StringBuffer sb = new StringBuffer();
 
-		System.out.print("USER ID를 입력하세요:");
+		System.out.print("USER ID를 입력하세요 (1~1000):");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String userId = br.readLine();
 
-		System.out.print("트레이너 ID를 입력하세요:");
+		System.out.print("트레이너 ID를 입력하세요 (1~100):");
 		String trainerId = br.readLine();
 
 		sb.append("UPDATE USERS");
@@ -314,11 +314,11 @@ public class QueryCreater {
 	}
 
 	private String select15() throws IOException {
-	    System.out.print("USER ID를 입력하세요:");
+	    System.out.print("USER ID를 입력하세요 (1~1000):");
 	    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	    String userId = br.readLine();
 
-	    System.out.print("예약할 Machine ID를 입력하세요:");
+	    System.out.print("예약할 Machine ID를 입력하세요 (1~1600):");
 	    String machineId = br.readLine();
 
 	    // 첫 번째 쿼리: 사용자의 reserve_machine_id 업데이트
@@ -350,11 +350,11 @@ public class QueryCreater {
 	}
 
 	private String select16() throws IOException {
-	    System.out.print("USER ID를 입력하세요:");
+	    System.out.print("USER ID를 입력하세요 (1~1000):");
 	    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	    String userId = br.readLine();
 
-	    System.out.print("사용할 Machine ID를 입력하세요:");
+	    System.out.print("사용할 Machine ID를 입력하세요 (1~1600):");
 	    String machineId = br.readLine();
 
 	    // 첫 번째 쿼리: 사용자의 using_machine_id 업데이트
@@ -372,7 +372,7 @@ public class QueryCreater {
 		StringBuffer sb = new StringBuffer();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-		System.out.print("User id를 입력해주세요 (1~100): ");
+		System.out.print("User id를 입력해주세요 (1~1000): ");
 		String userId = br.readLine();
 
 		sb.append(
@@ -424,16 +424,16 @@ public class QueryCreater {
 			StringBuffer sb = new StringBuffer();
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-			System.out.print("rating를 입력해주세요 (1~5): ");
+			System.out.print("rating를 입력해주세요(1~5): ");
 			String rating = br.readLine();
 
 			System.out.print("comment를 입력해주세요: ");
 			String comment = br.readLine();
 
-			System.out.print("User id를 입력해주세요: ");
+			System.out.print("User id를 입력해주세요 (1~1000): ");
 			String userId = br.readLine();
 
-			System.out.print("Gym id를 입력해주세요: ");
+			System.out.print("Gym id를 입력해주세요 (1~100): ");
 			String gymId = br.readLine();
 
 			LocalDate currentDate = LocalDate.now();
@@ -455,13 +455,13 @@ public class QueryCreater {
 			StringBuffer sb = new StringBuffer();
 	    	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	    	
-	    	System.out.print("수정할 Review id를 입력해주세요 (): ");
+	    	System.out.print("수정할 Review id를 입력해주세요: ");
 	    	String reviewId = br.readLine();
 	    	
-	    	System.out.print("수정할 rating를 입력해주세요 (): ");
+	    	System.out.print("수정할 rating를 입력해주세요: ");
 	    	String rating = br.readLine();
 	    	
-	    	System.out.print("수정할 comment를 입력해주세요 (): ");
+	    	System.out.print("수정할 comment를 입력해주세요: ");
 	    	String comment = br.readLine();
 	    	
 	    	LocalDate currentDate = LocalDate.now();
@@ -484,7 +484,7 @@ public class QueryCreater {
 			StringBuffer sb = new StringBuffer();
 	    	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	    	
-	    	System.out.print("삭제할 Review id를 입력해주세요 (): ");
+	    	System.out.print("삭제할 Review id를 입력해주세요: ");
 	    	String reviewId = br.readLine();
 	    	
 	    	sb.append("DELETE REVIEW WHERE REVIEW_ID = "+reviewId);
